@@ -1,8 +1,53 @@
-# Detecção de Anomalias e Fraudes em Transações de Cartão de Crédito
+<div align="center">
 
-Sistema ponta a ponta para identificação de fraudes e anomalias no dataset público [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O projeto reúne preparação de dados, engenharia de mais de 100 features, dez modelos de machine learning e deep learning, tratamento profissional do desbalanceamento, seleção dinâmica de limiar, API REST, dashboard interativo, feedback auditável e relatório PDF.
+# 🛡️ Fraud Sentinel
 
-📄 **[Baixar o relatório técnico completo em PDF](output/pdf/relatorio-tecnico-fraudes-cartao.pdf)**
+### Detecção de Anomalias e Fraudes em Transações de Cartão de Crédito
+
+Sistema ponta a ponta de machine learning para identificar transações suspeitas em um cenário de desbalanceamento extremo.
+
+[![Python](https://img.shields.io/badge/Python-3.11%20--%203.13-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
+[![scikit-learn](https://img.shields.io/badge/scikit--learn-%3E%3D1.6-F7931E?style=for-the-badge&logo=scikitlearn&logoColor=white)](https://scikit-learn.org/stable/)
+[![XGBoost](https://img.shields.io/badge/XGBoost-%3E%3D2.1-006600?style=for-the-badge)](https://xgboost.readthedocs.io/en/stable/)
+[![TensorFlow](https://img.shields.io/badge/TensorFlow-%3E%3D2.16-FF6F00?style=for-the-badge&logo=tensorflow&logoColor=white)](https://www.tensorflow.org/?hl=pt-br)
+[![Streamlit](https://img.shields.io/badge/Streamlit-%3E%3D1.41-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white)](https://docs.streamlit.io/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-%3E%3D0.115-009688?style=for-the-badge&logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
+
+[![GitHub last commit](https://img.shields.io/github/last-commit/davidsonsilva/desafio-dio-fraudes-cartao-credito?style=flat-square)](https://github.com/davidsonsilva/desafio-dio-fraudes-cartao-credito/commits/main)
+[![GitHub repo size](https://img.shields.io/github/repo-size/davidsonsilva/desafio-dio-fraudes-cartao-credito?style=flat-square)](https://github.com/davidsonsilva/desafio-dio-fraudes-cartao-credito)
+[![Tests](https://img.shields.io/badge/tests-pytest-0A9EDC?style=flat-square&logo=pytest&logoColor=white)](tests/)
+
+[📄 Relatório técnico](output/pdf/relatorio-tecnico-fraudes-cartao.pdf) · [🚀 Executar](#-execução-rápida) · [📡 API](#iniciar-a-api) · [📊 Dashboard](#iniciar-o-dashboard) · [📚 Referências](#referências)
+
+</div>
+
+---
+
+## 📌 Sobre o projeto
+
+O projeto utiliza o dataset público [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud) e reúne preparação de dados, engenharia de mais de 100 features, dez modelos de machine learning e deep learning, tratamento profissional do desbalanceamento, seleção dinâmica de limiar, API REST, dashboard interativo, feedback auditável e relatórios PDF.
+
+| Indicador | Valor |
+|:--|--:|
+| Transações no dataset | **284.807** |
+| Fraudes confirmadas | **492** |
+| Taxa de fraude | **0,173%** |
+| Modelos comparados | **10** |
+| Features após engenharia | **111** |
+| Canais de inferência | **CLI + API + Dashboard** |
+
+## 🧭 Navegação
+
+- [Visão geral](#visão-geral)
+- [Resultado do treinamento](#resultado-do-treinamento)
+- [Arquitetura](#arquitetura)
+- [Tecnologias](#tecnologias)
+- [Processo de desenvolvimento](#processo-de-desenvolvimento)
+- [Execução rápida](#-execução-rápida)
+- [API e dashboard](#iniciar-a-api)
+- [Testes e qualidade](#qualidade-e-testes)
+- [Limitações](#limitações-e-próximos-passos)
+- [Referências](#referências)
 
 ## Visão geral
 
@@ -20,11 +65,13 @@ O sistema foi desenvolvido com os seguintes objetivos:
 
 > Este software tem finalidade educacional e demonstrativa. Uso financeiro real exige validação independente, segurança, monitoramento de drift, explicabilidade, governança, revisão humana e conformidade regulatória.
 
-## Resultado do treinamento
+## 📊 Resultado do treinamento
 
 A captura abaixo mostra o dashboard Streamlit após uma execução demonstrativa do pipeline. Nessa execução, a regressão logística foi selecionada entre os dez modelos, com **111 features** geradas e **50 fraudes** presentes no conjunto sintético de treinamento.
 
-![Dashboard Fraud Sentinel após o treinamento, exibindo o modelo vencedor e a comparação de métricas](docs/images/resultado-treinamento-fraud-sentinel.png)
+<p align="center">
+  <img src="docs/images/resultado-treinamento-fraud-sentinel.png" alt="Dashboard Fraud Sentinel após o treinamento, exibindo o modelo vencedor e a comparação de métricas" width="100%">
+</p>
 
 > Os números da imagem pertencem ao modo `--demo` e validam o funcionamento integrado do sistema. Eles não representam o desempenho final sobre as 284.807 transações do dataset real do Kaggle.
 
@@ -70,19 +117,21 @@ Dataset Kaggle ou dados sintéticos
                  Próximo retreinamento
 ```
 
-## Tecnologias
+## 🧰 Tecnologias
 
-- Python 3.11–3.13;
-- pandas e NumPy para manipulação dos dados;
-- scikit-learn para transformações, modelos, métricas e detecção de novidade;
-- imbalanced-learn para SMOTE;
-- XGBoost para gradient boosting otimizado;
-- TensorFlow/Keras para a rede neural;
-- FastAPI e Pydantic para a API REST e contratos;
-- Streamlit para o dashboard;
-- ReportLab para o relatório PDF;
-- joblib para persistência do artefato;
-- pytest e Ruff para qualidade do código.
+| Camada | Tecnologia | Responsabilidade |
+|:--|:--|:--|
+| Linguagem | Python 3.11–3.13 | Pipeline, treinamento, API e dashboard |
+| Dados | pandas + NumPy | Leitura, validação e transformação tabular |
+| Machine learning | scikit-learn | Modelos, preprocessing, métricas e anomalias |
+| Desbalanceamento | imbalanced-learn | Geração de amostras sintéticas com SMOTE |
+| Boosting | XGBoost | Classificação otimizada com peso de classe |
+| Deep learning | TensorFlow/Keras | Rede neural densa com early stopping |
+| API | FastAPI + Pydantic | REST, validação e documentação OpenAPI |
+| Interface | Streamlit | Dashboard e classificação de arquivos CSV |
+| Relatórios | ReportLab | Documentação e métricas em PDF |
+| Persistência | joblib | Artefato treinado e transformações |
+| Qualidade | pytest + Ruff | Testes automatizados e análise estática |
 
 ## Estrutura do projeto
 
@@ -235,7 +284,38 @@ Os testes verificam:
 - inclusão explícita de XGBoost e TensorFlow/Keras;
 - presença de quatro modelos não supervisionados/de novidade.
 
-## Instalação
+## 🚀 Execução rápida
+
+> [!TIP]
+> Para apenas conhecer o sistema, use o modo demonstrativo. Ele gera dados sintéticos compatíveis, treina os dez modelos e cria o artefato consumido pelo dashboard.
+
+```powershell
+# 1. Preparar o ambiente
+py -3.12 -m venv .venv
+.venv\Scripts\Activate.ps1
+python -m pip install --upgrade pip
+pip install -e ".[dev]"
+
+# 2. Treinar com 5.000 transações sintéticas
+python -m fraud_detection.cli train --demo --rows 5000
+
+# 3. Abrir o dashboard
+streamlit run app/streamlit_app.py
+```
+
+Depois, acesse **[http://localhost:8501](http://localhost:8501)**.
+
+| Objetivo | Comando | Saída principal |
+|:--|:--|:--|
+| Treinar demonstração | `python -m fraud_detection.cli train --demo --rows 5000` | `models/fraud_detector.joblib` |
+| Treinar dataset real | `python -m fraud_detection.cli train --data data/raw/creditcard.csv` | Modelo e métricas reais |
+| Abrir dashboard | `streamlit run app/streamlit_app.py` | `localhost:8501` |
+| Iniciar API | `uvicorn fraud_detection.api:app --reload` | `127.0.0.1:8000/docs` |
+| Gerar relatório | `python -m fraud_detection.cli report` | `reports/fraud_detection_report.pdf` |
+| Executar testes | `pytest -q` | Resultado dos testes |
+| Verificar código | `ruff check .` | Diagnóstico estático |
+
+## Instalação detalhada
 
 TensorFlow ainda não suporta todas as versões imediatamente após um lançamento do Python. Use Python **3.11, 3.12 ou 3.13**.
 
@@ -295,6 +375,19 @@ Exemplo de resposta de `POST /predict`:
 ```
 
 A requisição deve incluir `Time`, `Amount` e todos os campos de `V1` a `V28`.
+
+<details>
+<summary><strong>Ver os endpoints disponíveis</strong></summary>
+
+| Método | Endpoint | Finalidade |
+|:--:|:--|:--|
+| `GET` | `/health` | Verifica o serviço e a presença do modelo |
+| `GET` | `/model/info` | Retorna modelo, versão, threshold e dataset |
+| `POST` | `/predict` | Classifica uma transação |
+| `POST` | `/predict/batch` | Classifica até 1.000 transações |
+| `POST` | `/feedback` | Registra o rótulo confirmado |
+
+</details>
 
 ## Iniciar o dashboard
 
