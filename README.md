@@ -20,6 +20,14 @@ O sistema foi desenvolvido com os seguintes objetivos:
 
 > Este software tem finalidade educacional e demonstrativa. Uso financeiro real exige validação independente, segurança, monitoramento de drift, explicabilidade, governança, revisão humana e conformidade regulatória.
 
+## Resultado do treinamento
+
+A captura abaixo mostra o dashboard Streamlit após uma execução demonstrativa do pipeline. Nessa execução, a regressão logística foi selecionada entre os dez modelos, com **111 features** geradas e **50 fraudes** presentes no conjunto sintético de treinamento.
+
+![Dashboard Fraud Sentinel após o treinamento, exibindo o modelo vencedor e a comparação de métricas](docs/images/resultado-treinamento-fraud-sentinel.png)
+
+> Os números da imagem pertencem ao modo `--demo` e validam o funcionamento integrado do sistema. Eles não representam o desempenho final sobre as 284.807 transações do dataset real do Kaggle.
+
 ## Arquitetura
 
 ```text
