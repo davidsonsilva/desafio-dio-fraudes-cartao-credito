@@ -2,6 +2,8 @@
 
 Sistema ponta a ponta para identificação de fraudes e anomalias no dataset público [Credit Card Fraud Detection](https://www.kaggle.com/datasets/mlg-ulb/creditcardfraud). O projeto reúne preparação de dados, engenharia de mais de 100 features, dez modelos de machine learning e deep learning, tratamento profissional do desbalanceamento, seleção dinâmica de limiar, API REST, dashboard interativo, feedback auditável e relatório PDF.
 
+📄 **[Baixar o relatório técnico completo em PDF](output/pdf/relatorio-tecnico-fraudes-cartao.pdf)**
+
 ## Visão geral
 
 O dataset contém **284.807 transações**, das quais apenas **492 são fraudes** — aproximadamente **0,173%**. Por isso, acurácia não é uma medida suficiente: um classificador que nunca detectasse fraude ainda teria mais de 99% de acurácia. Este projeto prioriza PR-AUC, recall, precisão e F1, além de registrar a matriz de confusão de cada modelo.
@@ -89,6 +91,8 @@ credit-card-fraud-detection/
 ├── reports/
 │   ├── metrics.json              # métricas de todos os modelos
 │   └── fraud_detection_report.pdf
+├── output/pdf/
+│   └── relatorio-tecnico-fraudes-cartao.pdf # documentação versionada
 ├── scripts/
 │   └── download_data.py          # download autenticado pelo Kaggle
 ├── src/fraud_detection/
@@ -299,6 +303,12 @@ python -m fraud_detection.cli report
 ```
 
 O comando exige que um treinamento anterior tenha produzido `reports/metrics.json`.
+
+Para recriar o relatório técnico versionado do projeto:
+
+```powershell
+python scripts/generate_project_pdf.py
+```
 
 ## Qualidade e testes
 
